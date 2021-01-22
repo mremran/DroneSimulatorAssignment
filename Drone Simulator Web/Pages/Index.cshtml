@@ -1,0 +1,58 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Drone Program</h1>
+    <form method="post" asp-page="Index">
+        <div class="row">
+            <div class="col-sm">
+                x Boundary: <input  asp-for="@Model._locationModel.yBorder" value="@Model._locationModel.xBorder" placeholder="Maximum x cord boundary" />
+            </div>
+            <div class="col-sm">
+                y Boundary: <input asp-for="@Model._locationModel.yBorder" value="@Model._locationModel.yBorder"  placeholder="Maximum y cord boundary"  />
+            </div>
+            <div class="col-sm">
+                <input type="submit" value="Start" asp-page-handler="Start" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <label>@Model.status</label>
+            </div>
+            <div class="col-sm">
+            </div>
+            <div class="col-sm">
+            </div>
+        </div>
+        <div class="container" id="dvDronePanel" style="display: @Model.ShowDronePanel">
+
+            <div class="row">
+                <div class="col-sm">
+                    x coordinate: <input asp-for="_locationModel.xcoordinate" value="@Model._locationModel.xcoordinate" placeholder="Maximum x cord boundary" />
+                </div>
+                <div class="col-sm">
+                    y cordinate: <input asp-for="_locationModel.ycoordinate" value="@Model._locationModel.ycoordinate" placeholder="Maximum y cord boundary" />
+                </div>
+                <div class="col-sm">
+                    Fly Time: y Boundary: <input asp-for="_locationModel.ycoordinate" value="@Model._locationModel.ycoordinate" placeholder="Maximum y cord boundary" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <input type="submit" value="Fly" asp-page-handler="Fly" />
+                </div>
+                <div class="col-sm">
+                    <input type="submit" value="Reset" asp-page-handler="Reset" />
+                </div>
+                <div class="col-sm">
+                    <input type="submit" value="Shutdown" asp-page-handler="Shutdown" />
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+</div>

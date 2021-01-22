@@ -1,0 +1,120 @@
+﻿@model Drone_Simulator_MVC.Models.DroneModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var simModel = Model;
+}
+<hr />
+<div class="row">
+    <div class="col-lg-12">
+        @using (Html.BeginForm("", "", FormMethod.Post))
+        {
+            <div class="row">
+                <div class="col-md-6">
+                    <div>
+                        @Html.LabelFor(model=> model.Boundary.xCoordinate)
+                        @Html.TextBoxFor(model=> model.Boundary.xCoordinate)
+                        @Html.ValidationMessageFor(model => model.Boundary.xCoordinate)
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div>
+                        @Html.LabelFor(model => model.Boundary.yCoordinate)
+                        @Html.TextBoxFor(model => model.Boundary.yCoordinate)
+                        @Html.ValidationMessageFor(model => model.Boundary.yCoordinate)
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="dvCoordinates">
+                <div class="col-md-6">
+                    <div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="">
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="submit" value="Start" class="btn btn-primary" asp-action="Start" />
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="dvDronePanel">
+                <div class="col-md-6">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div>
+                        @Html.LabelFor(model => model.InitialPosition.xCoordinate)
+                        @Html.TextBoxFor(model => model.InitialPosition.xCoordinate)
+                        @Html.ValidationMessageFor(model => model.InitialPosition.xCoordinate)
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div>
+                        @Html.LabelFor(model => model.InitialPosition.yCoordinate)
+                        @Html.TextBoxFor(model => model.InitialPosition.yCoordinate)
+                        @Html.ValidationMessageFor(model => model.InitialPosition.yCoordinate)
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="">
+                       
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="">
+                        <div id="dvLight">Light On</div>
+                        @Html.HiddenFor(model => model.FlashLightMode.Status)
+                        @Html.HiddenFor(model => model.State)
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div>
+                        @Html.HiddenFor(model => model.LightMode.Status)
+                        <input type="submit" value="Light" class="btn btn-primary" asp-action="Light" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div>
+                        @Html.LabelFor(model => model.HornMode.Time)
+                        <input type="submit" value="Horn" class="btn btn-primary" asp-action="Horn" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="">
+                        <input type="submit" value="Flash" class="btn btn-primary" asp-action="Flash" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="">
+                        <input type="submit" value="Shutdown" class="btn btn-primary" asp-action="Shutdown" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if (@Model.State == 1) {
+                $("#dvDronePanel").toggle();
+                $("#dvCoordinates").toggle();
+            }
+            if (@Model.LightMode.Status == 2) {
+                $("#dvLight").toggle();
+            }
+        });
+
+    </script>
+}
