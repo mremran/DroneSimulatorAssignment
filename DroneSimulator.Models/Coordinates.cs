@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace DroneSimulator.Models
 {
@@ -6,5 +7,6 @@ namespace DroneSimulator.Models
     {
         public int xCoordinate { get; set; }
         public int yCoordinate { get; set; }
+
     }
 }

@@ -13,5 +13,6 @@ public static class DroneStates
     public const string Horn = "Horn";
     public const string HomeReset = "HomeReset";
     public const string Move = "Move";
+    public const string BoundaryReached = "Boundary has reached";
 
 }

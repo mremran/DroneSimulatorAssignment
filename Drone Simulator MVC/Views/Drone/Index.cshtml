@@ -4,116 +4,220 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-    var simModel = Model;
 }
 <hr />
 <div class="row">
     <div class="col-lg-12">
         @using (Html.BeginForm("", "", FormMethod.Post))
         {
-            <div class="row">
-                <div class="col-md-6">
-                    <div>
-                        @Html.LabelFor(model=> model.Boundary.xCoordinate)
-                        @Html.TextBoxFor(model=> model.Boundary.xCoordinate)
-                        @Html.ValidationMessageFor(model => model.Boundary.xCoordinate)
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div>
-                        @Html.LabelFor(model => model.Boundary.yCoordinate)
-                        @Html.TextBoxFor(model => model.Boundary.yCoordinate)
-                        @Html.ValidationMessageFor(model => model.Boundary.yCoordinate)
-                    </div>
-                </div>
-            </div>
             <div class="row" id="dvCoordinates">
-                <div class="col-md-6">
-                    <div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="">
-
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input type="submit" value="Start" class="btn btn-primary" asp-action="Start" />
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Define Boundary</div>
+                                <div class="panel-body">
+                                    <div class="col-md-6">
+                                        <div>
+                                            @Html.LabelFor(m => m.Boundary.xCoordinate)
+                                            @Html.TextBoxFor(m => m.Boundary.xCoordinate, htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.Boundary.xCoordinate, "", htmlAttributes: new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div>
+                                            @Html.LabelFor(m => m.Boundary.yCoordinate)
+                                            @Html.TextBoxFor(m => m.Boundary.yCoordinate, htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.Boundary.yCoordinate, "", htmlAttributes: new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Initial Position
+                                </div>
+                                <div class="panel-body">
+                                    <div class="col-md-6">
+                                        <div>
+                                            @Html.LabelFor(m => m.InitialPosition.xCoordinate)
+                                            @Html.TextBoxFor(m => m.InitialPosition.xCoordinate, htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.InitialPosition.xCoordinate, "", htmlAttributes: new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div>
+                                            @Html.LabelFor(m => m.InitialPosition.yCoordinate)
+                                            @Html.TextBoxFor(m => m.InitialPosition.yCoordinate, htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.InitialPosition.yCoordinate, "", htmlAttributes: new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <input type="submit" value="Start" class="btn btn-primary btn-lg" asp-action="Start" />
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="row">
+                Drone State: <input type="text" name="State" value="@Model.State" class="form-control " readonly />
+            </div>
+            <br />
             <div class="row" id="dvDronePanel">
-                <div class="col-md-6">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div>
-                        @Html.LabelFor(model => model.InitialPosition.xCoordinate)
-                        @Html.TextBoxFor(model => model.InitialPosition.xCoordinate)
-                        @Html.ValidationMessageFor(model => model.InitialPosition.xCoordinate)
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Flying Options
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-6">
+                                <div>
+                                    @Html.LabelFor(m => m.FlyTime)
+                                    @Html.TextBoxFor(m => m.FlyTime, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.FlyTime, "", htmlAttributes: new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div>
+                                    @Html.LabelFor(m => m.direction)
+                                    <select asp-for="direction" asp-items="Html.GetEnumSelectList<CompassDirection.Direction>()" class="form-control">
+                                        <option selected="selected" value="">Please select</option>
+                                    </select>
+                                    @Html.ValidationMessageFor(m => m.direction, "", htmlAttributes: new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <input type="submit" value="Move" class="btn btn-success btn-lg" asp-action="Move" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Current Position
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-6">
+                                <div>
+                                    @Html.LabelFor(m => m.CurrentPosition.xCoordinate)
+                                    @*@Html.TextBoxFor(m => m.CurrentPosition.xCoordinate, htmlAttributes: new { @class = "form-control" })*@
+                                    <input type="text" name="CurrentPosition.xCoordinate" value="@Model.CurrentPosition.xCoordinate" class="form-control " readonly />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div>
+                                    @Html.LabelFor(m => m.CurrentPosition.yCoordinate)
+                                    @*@Html.TextBoxFor(m => m.CurrentPosition.yCoordinate, htmlAttributes: new { @class = "form-control" })*@
+                                    <input type="text" name="CurrentPosition.yCoordinate" value="@Model.CurrentPosition.yCoordinate" class="form-control" readonly />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Horn
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-12">
+                                <div>
+                                    @Html.LabelFor(m => m.HornMode.Time)
+                                    @*@Html.TextBoxFor(m => m.CurrentPosition.xCoordinate, htmlAttributes: new { @class = "form-control" })*@
+                                    <input type="text" name="HornMode.Time" value="@Model.HornMode.Time" class="form-control " />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <input type="submit" value="Horn" class="btn btn-warning btn-lg" asp-action="Horn" />
+                            <img id="imgHorn" src="https://png.pngtree.com/png-vector/20190129/ourlarge/pngtree-bell-vector-icon-png-image_355900.jpg"
+                                 alt="Light" style="width: 50px; height:50px; display: @((Model.HornMode.Time>0) ? "inline" : "none")" />
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div>
-                        @Html.LabelFor(model => model.InitialPosition.yCoordinate)
-                        @Html.TextBoxFor(model => model.InitialPosition.yCoordinate)
-                        @Html.ValidationMessageFor(model => model.InitialPosition.yCoordinate)
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Light
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-12">
+                                <div>
+                                    <input type="hidden" name="LightMode.Status" value="@Model.LightMode.Status" class="form-control " />
+                                    <img src="https://spng.subpng.com/20180615/zoa/kisspng-computer-icons-light-icon-design-strategic-thinking-5b2372d0e34e48.0694903915290498089311.jpg"
+                                         alt="Light" style="width: 50px; height:50px; display: @((Model.LightMode.Status==1) ? "inline" : "none")" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <input type="submit" value="Light" class="btn btn-primary btn-lg" asp-action="Light" />
+                        </div>
                     </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Flash Light
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-12">
+                                <div>
+                                    <input type="hidden" name="FlashLightMode.Status" value="@Model.FlashLightMode.Status" class="form-control " />
+                                    <img src="https://i.pinimg.com/originals/0b/3c/61/0b3c610408b885d01c878e4fd1568461.gif"
+                                         alt="Light" style="width: 50px; height:75px; display: @((Model.FlashLightMode.Status==1) ? "inline" : "none")" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <input type="submit" value="Flash" class="btn btn-warning btn-lg" asp-action="Flash" />
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12">
+                    <input type="submit" value="Restart" class="btn btn-outline-primary btn-lg" asp-action="Restart" />
+                    <input type="submit" value="Shutdown" class="btn btn-danger btn-lg" asp-action="Shutdown" />
                 </div>
                 <div class="col-md-6">
                     <div class="">
-                       
+                        <input type="hidden" name="FlashLightMode.Status" value="@Model.FlashLightMode.Status" class="form-control " />
+                        <input type="hidden" name="HornMode.Time" value="@Model.HornMode.Time" class="form-control " />
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="">
-                        <div id="dvLight">Light On</div>
-                        @Html.HiddenFor(model => model.FlashLightMode.Status)
-                        @Html.HiddenFor(model => model.State)
-                    </div>
                 </div>
                 <div class="col-md-6">
-                    <div>
-                        @Html.HiddenFor(model => model.LightMode.Status)
-                        <input type="submit" value="Light" class="btn btn-primary" asp-action="Light" />
-                    </div>
                 </div>
-                <div class="col-md-6">
-                    <div>
-                        @Html.LabelFor(model => model.HornMode.Time)
-                        <input type="submit" value="Horn" class="btn btn-primary" asp-action="Horn" />
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="">
-                        <input type="submit" value="Flash" class="btn btn-primary" asp-action="Flash" />
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="">
-                        <input type="submit" value="Shutdown" class="btn btn-primary" asp-action="Shutdown" />
-                    </div>
-                </div>
+            </div>
+            <div class="col-md-6">
+                @*@Html.HiddenFor(m => m.LightMode.Status)*@
+         
             </div>
         }
     </div>
 </div>
+
+<div class="clearfix"></div>
 
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script type="text/javascript">
         $(document).ready(function () {
-            if (@Model.State == 1) {
+            if ("@Model.State" == "Start") {
                 $("#dvDronePanel").toggle();
                 $("#dvCoordinates").toggle();
             }
-            if (@Model.LightMode.Status == 2) {
-                $("#dvLight").toggle();
+            if (@Model.HornMode.Time > 0) {
+                $("#imgHorn").show();
+                setTimeout(function () {
+                    $("#imgHorn").hide()
+                }, @Model.HornMode.Time * 1000);
             }
+
         });
 
     </script>

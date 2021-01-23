@@ -6,7 +6,8 @@ namespace DroneSimulator.Models
 {
     public class Horn
     {
-        public bool State { get; set; }
+        public string State { get; set; }
         public int Time { get; set; }
+        public bool Status { get; set; }
     }
 }

@@ -1,8 +1,11 @@
+using DroneSimulator.Services.interfaces;
+using DroneSimulator.Controllers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using AutoMapper;
 
 namespace Drone_Simulator_MVC
 {
@@ -18,8 +21,8 @@ namespace Drone_Simulator_MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddScoped<iDrone, APD001_XE02>();
-            //services.AddSingleton<SimulatorModel, SimulatorModel()>();
+            services.AddAutoMapper(typeof(Startup));
+            services.AddTransient<IDroneController, DroneController>();
             services.AddControllersWithViews();
         }
 

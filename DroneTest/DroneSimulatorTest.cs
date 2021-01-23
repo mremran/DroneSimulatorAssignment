@@ -45,9 +45,9 @@ namespace DroneTest
         public void TurnLightOffDroneTest()
         {
             Drone drone = new Drone();
-            drone.LightMode = new Lights { Status = true };
+            drone.LightMode = new Lights { Status = 1 };
             drone = droneController.Light(drone);
-            Assert.AreEqual(drone.LightMode.Status, false);
+            Assert.AreEqual(drone.LightMode.Status, 0);
         }
 
         [Test]

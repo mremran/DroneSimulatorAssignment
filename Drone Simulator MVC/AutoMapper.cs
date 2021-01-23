@@ -2,11 +2,11 @@
 using Drone_Simulator_MVC.Models;
 using DroneSimulator.Models;
 
-namespace Drone_Simulator_Web
+namespace Drone_Simulator_MVC
 {
-    public class AutoMapper: Profile
+    public class AddAutoMapper: Profile
     {
-        public AutoMapper()
+        public AddAutoMapper()
         {
             CreateMap<DroneModel, Drone>();
             CreateMap<Drone, DroneModel>();

@@ -11,15 +11,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{B5BC46
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{4959E470-9AC8-4634-A17C-2C8351E356F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DroneTest", "DroneTest\DroneTest.csproj", "{6FA6B907-B629-4372-8209-0499C2322E35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DroneTest", "DroneTest\DroneTest.csproj", "{6FA6B907-B629-4372-8209-0499C2322E35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DroneSimulator.Services", "DroneSimulator.Services\DroneSimulator.Services.csproj", "{F5B09C76-CA90-4DED-9AE8-D532814B6583}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DroneSimulator.Services", "DroneSimulator.Services\DroneSimulator.Services.csproj", "{F5B09C76-CA90-4DED-9AE8-D532814B6583}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DroneSimulator.Models", "DroneSimulator.Models\DroneSimulator.Models.csproj", "{E2548163-4399-4BB8-92E5-6CA4629CB9FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DroneSimulator.Models", "DroneSimulator.Models\DroneSimulator.Models.csproj", "{E2548163-4399-4BB8-92E5-6CA4629CB9FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DroneSimulator.Controllers", "DroneSimulator.Controllers\DroneSimulator.Controllers.csproj", "{C7E1FF00-5B62-419F-AEF5-AA1E9FA0F6D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DroneSimulator.Controllers", "DroneSimulator.Controllers\DroneSimulator.Controllers.csproj", "{C7E1FF00-5B62-419F-AEF5-AA1E9FA0F6D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DroneSimulator.BLL", "DroneSimulator.BLL\DroneSimulator.BLL.csproj", "{0222E00A-ADD8-47B2-949F-13FCA85BFEC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DroneSimulator.BLL", "DroneSimulator.BLL\DroneSimulator.BLL.csproj", "{0222E00A-ADD8-47B2-949F-13FCA85BFEC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
